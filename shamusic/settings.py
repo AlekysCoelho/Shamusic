@@ -28,6 +28,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third-party Apps
+    "rest_framework",
+    "django_filters",
+    # "silk",
+    # "django_extensions",
     # Local Apps
     "accounts.apps.AccountsConfig",
     "core.apps.CoreConfig",

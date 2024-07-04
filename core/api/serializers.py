@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Album, Band
+from core.models import Album, Band
 
 
 class BandNestedSerializer(serializers.ModelSerializer):
