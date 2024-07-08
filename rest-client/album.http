@@ -1,0 +1,13 @@
+# HOSTNAME
+@hostname = http://127.0.0.1:8000
+
+## ADMIN
+GET {{hostname}}/api-admin/albums
+Authorization: Basic admin:password
+
+## USERS
+GET {{hostname}}/shaplayer/albums-list
+Authorization: Basic user:password
+
+GET {{hostname}}/shaplayer/single-album/1
+Authorization: Basic user:password

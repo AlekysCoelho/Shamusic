@@ -15,7 +15,7 @@ from core.models import Album, Band, Musician, Track
 class ListBand(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Band.objects.all()
     serializer_class = BandSerializer
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
 
     def get(self, request, *args, **kwargs):
         """Get all bands."""
@@ -29,7 +29,7 @@ class RetrieveBand(
     lookup_field = "id"
     queryset = Band.objects.all()
     serializer_class = BandSerializer
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
 
     def get(self, request, *args, **kwargs):
         """Get only band"""
@@ -40,7 +40,7 @@ class RetrieveBand(
 class ListAlbum(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Album.objects.all().select_related("band")
     serializer_class = AlbumListStringRelatedFieldSerializer
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
 
     def get(self, request, *args, **kwargs):
         """Get all albums."""
@@ -54,7 +54,7 @@ class RetrieveAlbum(
     lookup_field = "id"
     queryset = Album.objects.all().select_related("band")
     serializer_class = AlbumListStringRelatedFieldSerializer
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
 
     def get(self, request, *args, **kwargs):
         """Get only album."""
@@ -65,7 +65,7 @@ class RetrieveAlbum(
 class ListMusician(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Musician.objects.all().select_related("band")
     serializer_class = MusicianSerializer
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
 
     def get(self, request, *args, **kwargs):
         """Get all musicians."""
@@ -79,7 +79,7 @@ class RetrieveMusician(
     lookup_field = "id"
     queryset = Musician.objects.all().select_related("band")
     serializer_class = MusicianSerializer
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
 
     def get(self, request, *args, **kwargs):
         """Get only musician."""
@@ -92,7 +92,7 @@ class ListTrack(mixins.ListModelMixin, generics.GenericAPIView):
         Track.objects.all().select_related("album").prefetch_related("by_composers")
     )
     serializer_class = TrackSerializer
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
 
     def get(self, request, *args, **kwargs):
         """Get all tracks."""
@@ -104,11 +104,11 @@ class RetrieveTrack(
     generics.GenericAPIView,
 ):
     lookup_field = "id"
+    permission_classes = [DjangoModelPermissions]
     queryset = (
         Track.objects.all().select_related("album").prefetch_related("by_composers")
     )
     serializer_class = TrackSerializer
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
 
     def get(self, request, *args, **kwargs):
         """Get only track."""
