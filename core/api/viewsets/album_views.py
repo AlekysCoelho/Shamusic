@@ -9,3 +9,9 @@ class AlbumListRetrieve(viewsets.ReadOnlyModelViewSet):
     queryset = Album.objects.all().select_related("band")
     serializer_class = AlbumListStringRelatedFieldSerializer
     permission_classes = [IsAdminUser]
+
+
+class AlbumList(viewsets.ModelViewSet):
+    queryset = Album.objects.all().select_related("band")
+    serializer_class = AlbumListStringRelatedFieldSerializer
+    permission_classes = [IsAdminUser]
