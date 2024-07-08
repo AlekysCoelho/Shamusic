@@ -8,5 +8,5 @@ Authorization: Basic admin:password
 GET {{hostname}}/shaplayer/tracks-list
 Authorization: Basic user:password
 
-GET {{hostname}}/shaplayer/single-track/b00ef677-2c6a-4fc9-b3fb-c659448ef7d5
+GET {{hostname}}/shaplayer/single-track/1
 Authorization: Basic user:password
