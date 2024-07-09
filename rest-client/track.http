@@ -10,3 +10,7 @@ Authorization: Basic user:password
 
 GET {{hostname}}/shaplayer/single-track/1
 Authorization: Basic user:password
+
+# Filtering music tracks by band.
+GET {{hostname}}/shaplayer/tracks-list/?band=iron maiden
+Authorization: Basic Ikki:1Ikki@ikki

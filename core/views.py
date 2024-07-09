@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, mixins
-from rest_framework.permissions import DjangoModelPermissions, IsAuthenticated
+from rest_framework.filters import SearchFilter
+from rest_framework.permissions import DjangoModelPermissions
 
 from core.api.serializers import (
     AlbumListStringRelatedFieldSerializer,
@@ -8,7 +10,9 @@ from core.api.serializers import (
     MusicianSerializer,
     TrackSerializer,
 )
+from core.filters import TrackFilter
 from core.models import Album, Band, Musician, Track
+from core.paginator import CustomPageTracks
 
 
 # BAND
@@ -93,6 +97,17 @@ class ListTrack(mixins.ListModelMixin, generics.GenericAPIView):
     )
     serializer_class = TrackSerializer
     permission_classes = [DjangoModelPermissions]
+    filterset_class = TrackFilter
+    filter_backends = [SearchFilter, DjangoFilterBackend]
+    pagination_class = CustomPageTracks
+
+    search_fields = (
+        "title",
+        "album__title",
+        "album__band__name",
+        "by_composers__last_name",
+    )
+    ordering = ["album__band__name"]
 
     def get(self, request, *args, **kwargs):
         """Get all tracks."""
